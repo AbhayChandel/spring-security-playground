@@ -6,31 +6,32 @@ CREATE TABLE user_status
     PRIMARY KEY (id)
 );
 
-CREATE TABLE authority
+CREATE SEQUENCE user_id_seq;
+CREATE TABLE users
+(
+    id bigint NOT NULL,
+    username character varying,
+    password character varying,
+    status bigint NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (status)
+        REFERENCES user_status (id)
+);
+
+CREATE TABLE role
 (
     id integer NOT NULL,
     name character varying NOT NULL,
     PRIMARY KEY (id)
 );
 
-
-CREATE SEQUENCE user_id_seq;
-CREATE TABLE users
-(
-    username character varying,
-    password character varying,
-    enabled bigint NOT NULL,
-    PRIMARY KEY (username),
-    FOREIGN KEY (enabled)
-        REFERENCES user_status (id)
-);
-
-CREATE TABLE AUTHORITIES
+CREATE TABLE user_role
    (
-		USERNAME character varying,
-        AUTHORITY bigint,
-        FOREIGN KEY (USERNAME) REFERENCES users(USERNAME),
-        FOREIGN KEY (AUTHORITY) REFERENCES authority(id)
+		user_id bigint,
+        role_id bigint,
+        PRIMARY KEY (user_id, role_id),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (role_id) REFERENCES role(id)
    );
 
 CREATE SEQUENCE customer_id_seq;

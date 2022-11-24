@@ -2,16 +2,16 @@ INSERT INTO user_status(id, status) VALUES (1, 'Active');
 INSERT INTO user_status(id, status) VALUES (2, 'Suspended');
 INSERT INTO user_status(id, status) VALUES (3, 'Removed');
 
-INSERT INTO authority(id, name) VALUES (1, 'USER_ROLE');
-INSERT INTO authority(id, name) VALUES (2, 'USER_ADMIN');
 
+INSERT INTO users(id, username, password, status) VALUES (1001, 'vikas', '$2a$10$3S61o/wSchPDduESyrUEyOjFqxwhrGcSEe2xr.aIOblVxcRR2ucmq', 1);
+INSERT INTO users(id, username, password, status) VALUES (1002, 'surbhi', '$2a$10$bKdZm1YiWB4D6TmabTTuA.vuKcHf6U5XdV/nfA21VOXDxpPU2Bck2', 1);
 
-INSERT INTO users(username, password, enabled) VALUES ('vikas', '$2a$10$3S61o/wSchPDduESyrUEyOjFqxwhrGcSEe2xr.aIOblVxcRR2ucmq', 1);
-INSERT INTO users(username, password, enabled) VALUES ('surbhi', '$2a$10$bKdZm1YiWB4D6TmabTTuA.vuKcHf6U5XdV/nfA21VOXDxpPU2Bck2', 1);
+INSERT INTO role(id, name) VALUES (1, 'USER_ROLE');
+INSERT INTO role(id, name) VALUES (2, 'USER_ADMIN');
 
-INSERT INTO AUTHORITIES(username, authority) VALUES('vikas', 1);
-INSERT INTO AUTHORITIES(username, authority) VALUES('surbhi', 1);
-INSERT INTO AUTHORITIES(username, authority) VALUES('surbhi', 2);
+INSERT INTO user_role(user_id, role_id) VALUES(1001, 1);
+INSERT INTO user_role(user_id, role_id) VALUES(1002, 1);
+INSERT INTO user_role(user_id, role_id) VALUES(1002, 2);
 
 INSERT INTO customer(id, first_name, last_name, phone) VALUES (1001, 'Vikas', 'Singh', 111);
 INSERT INTO customer(id, first_name, last_name, phone) VALUES (2001, 'Surbhi', 'Chawla', 222);
